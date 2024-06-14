@@ -16,7 +16,7 @@ const getAllWorkouts = async (req, res)=>{
 const getSingleWorkout = async (req, res)=>{
     const {id} = req.params
     try {
-        if (!mongoose.Types.ObjectId.isValid) {
+        if (!mongoose.Types.ObjectId.isValid(id)) {
             return res.status(404).json({msg: "Wrong Id format"})
         }
         const workout = await Workout.findById(id)
@@ -45,7 +45,7 @@ const createWorkout = async (req, res)=>{
 const deleteWorkout = async (req, res)=>{
     const {id} = req.params
     try {
-        if (!mongoose.Types.ObjectId.isValid) {
+        if (!mongoose.Types.ObjectId.isValid(id)) {
             return res.status(404).json({msg: "Wrong Id format"})
         }
 
@@ -64,7 +64,7 @@ const deleteWorkout = async (req, res)=>{
 const updateWorkout = async (req, res)=>{
     const {id} = req.params
     try {
-        if (!mongoose.Types.ObjectId.isValid) {
+        if (!mongoose.Types.ObjectId.isValid(id)) {
             return res.status(404).json({msg: "Wrong Id format"})
         }
         const workout = await Workout.findByIdAndUpdate(id, {...req.body}, {new: true})
